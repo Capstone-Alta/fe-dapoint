@@ -4,9 +4,21 @@ import Vuex from "vuex";
 Vue.use(Vuex);
 
 export default new Vuex.Store({
-  state: {},
+  state: {
+    drawer: false,
+  },
   getters: {},
-  mutations: {},
+  mutations: {
+    toggleDrawer(state) {
+      state.drawer = !state.drawer;
+    },
+    openDrawer(state) {
+      state.drawer = true;
+    },
+    closeDrawer(state) {
+      state.drawer = false;
+    },
+  },
   actions: {},
   modules: {},
 });
