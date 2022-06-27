@@ -1,14 +1,26 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import HomeView from "../views/HomeView.vue";
+import Dashboard from "../views/Dashboard.vue";
+import Voucher from "../views/Voucher.vue";
+import Pulsa from "../views/Pulsa.vue";
 
 Vue.use(VueRouter);
 
 const routes = [
   {
     path: "/",
-    name: "home",
-    component: HomeView,
+    name: "dashboard",
+    component: Dashboard,
+  },
+  {
+    path: "/voucher",
+    name: "voucher",
+    component: Voucher,
+  },
+  {
+    path: "/pulsa",
+    name: "pulsa",
+    component: Pulsa,
   },
   {
     path: "/about",

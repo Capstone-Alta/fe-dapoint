@@ -14,6 +14,7 @@ export default new Vuetify({
         third: "#B8EBFC",
         white: "#FFFFFF",
         gray: "#F4F7FE",
+        green_diff: "#B7FFBA",
       },
     },
   },

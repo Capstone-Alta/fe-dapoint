@@ -53,9 +53,15 @@
           </v-list-item-icon>
 
           <v-list-item-content>
-            <v-list-item-title class="sidebar-text">{{
-              item.title
-            }}</v-list-item-title>
+            <v-list-item-title class="sidebar-text">
+              <router-link
+                class="router-link"
+                :to="item.link"
+                style="color: white"
+              >
+                {{ item.title }}
+              </router-link>
+            </v-list-item-title>
           </v-list-item-content>
         </v-list-item>
       </v-list>
@@ -81,9 +87,9 @@ export default {
 
   data: () => ({
     items: [
-      { title: "Dashboard", icon: "dashboard" },
-      { title: "Data User", icon: "data_user" },
-      { title: "Voucher Stock", icon: "voucher" },
+      { title: "Dashboard", icon: "dashboard", link: "/" },
+      { title: "Data User", icon: "data_user", link: "/data_user" },
+      { title: "Voucher Stock", icon: "voucher", link: "/voucher" },
     ],
     // drawer: false,
   }),
@@ -166,5 +172,9 @@ export default {
 .nalo {
   text-align: center;
   margin-top: 100px;
+}
+
+.router-link {
+  text-decoration: none;
 }
 </style>

@@ -1,15 +1,11 @@
 <template>
   <v-container fluid class="px-16">
     <v-row>
-      <v-app-bar dense color="white" elevation="0" style="padding">
+      <v-app-bar dense color="white" elevation="0">
         <HambMenu ref="hamb" />
         <span class="text_first mx-2 welcome">Welcome, Jane Doe</span>
-        <!-- <div
-          style="width: 100px; background-color: red"
-          class="d-flex align-center"
-        >
-        </div> -->
-        <v-alert outlined class="pa-0" color="first" style="width: 60%">
+        <v-spacer></v-spacer>
+        <v-alert outlined class="pa-0 ma-0" color="first" style="width: 60%">
           <v-autocomplete dense solo hide-details></v-autocomplete>
         </v-alert>
         <v-btn tile icon large class="ml-1 mr-4">
@@ -19,11 +15,23 @@
     </v-row>
     <v-row>
       <v-col v-for="stat in stats" :key="stat">
-        <v-card>
-          <v-alert outlined color="first" height="178.64">
+        <v-card elevation="0">
+          <v-alert outlined color="first" height="178.64" class="px-8">
             <v-card-title class="pa-0"> {{ stat.key }}</v-card-title>
-            <v-card-text class="card-value">
-              {{ stat.value }}
+            <v-card-text class="pa-0 d-flex align-center justify-space-between">
+              <div class="card-value">
+                {{ stat.value }}
+              </div>
+              <v-card
+                color="green_diff"
+                class="difference d-flex align-center justify-center mr-8"
+                width="106.25"
+                height="35.22"
+              >
+                <span style="color: #05cd99">
+                  {{ stat.difference }}
+                </span>
+              </v-card>
             </v-card-text>
           </v-alert>
         </v-card>
@@ -38,6 +46,7 @@
               width="89"
               height="37"
               class="py-auto d-flex align-center justify-center"
+              elevation="0"
             >
               <img
                 src="/icon/home/calendar_today.png"
@@ -73,7 +82,7 @@
 import HambMenu from "../components/HambMenu";
 
 export default {
-  name: "Home",
+  name: "Dashboard",
 
   components: {
     HambMenu,
@@ -81,8 +90,8 @@ export default {
 
   data: () => ({
     stats: [
-      { key: "Total User", value: "1000" },
-      { key: "Voucher Avaible", value: "1000" },
+      { key: "Total User", value: "1000", difference: "+500" },
+      { key: "Voucher Avaible", value: "1000", difference: "+500" },
     ],
     statsPoin: {
       key: "Point Reedem",
@@ -92,7 +101,7 @@ export default {
 };
 </script>
 
-<style scoped>
+<style>
 .welcome {
   font-family: "DM Sans";
   font-style: normal;
@@ -131,5 +140,19 @@ export default {
   font-weight: 700;
   font-size: 34px;
   line-height: 42px;
+}
+
+.difference {
+  font-family: "DM Sans";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 20px;
+  /* or 100% */
+
+  text-align: center;
+  letter-spacing: -0.02em;
+
+  color: #05cd99;
 }
 </style>
