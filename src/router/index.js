@@ -3,6 +3,8 @@ import VueRouter from "vue-router";
 import Dashboard from "../views/Dashboard.vue";
 import Voucher from "../views/Voucher.vue";
 import Pulsa from "../views/Pulsa.vue";
+import EMoney from "../views/EMoney.vue";
+import CashOut from "../views/CashOut.vue";
 
 Vue.use(VueRouter);
 
@@ -21,6 +23,16 @@ const routes = [
     path: "/pulsa",
     name: "pulsa",
     component: Pulsa,
+  },
+  {
+    path: "/emoney",
+    name: "emoney",
+    component: EMoney,
+  },
+  {
+    path: "/cashout",
+    name: "cashout",
+    component: CashOut,
   },
   {
     path: "/about",
