@@ -3,6 +3,7 @@ import VueRouter from "vue-router";
 import Dashboard from "../views/Dashboard.vue";
 import Voucher from "../views/Voucher.vue";
 import Pulsa from "../views/Pulsa.vue";
+import ListPulsa from "../views/ListPulsa.vue";
 
 Vue.use(VueRouter);
 
@@ -21,6 +22,11 @@ const routes = [
     path: "/pulsa",
     name: "pulsa",
     component: Pulsa,
+  },
+  {
+    path: "/listpulsa",
+    name: "listpulsa",
+    component: ListPulsa,
   },
   {
     path: "/about",
