@@ -3,7 +3,7 @@
     <v-row>
       <v-app-bar dense color="white" elevation="0">
         <HambMenu ref="hamb" />
-        <span class="text_first mx-2 welcome">Pulsa</span>
+        <span class="text_first mx-2 welcome">Data</span>
         <v-spacer></v-spacer>
         <v-btn tile icon large class="ml-1 mr-4">
           <img src="/icon/notification.png" width="30" />
@@ -21,7 +21,7 @@
               class="px-8 d-flex align-center justify-center"
             >
               <img
-                :src="'/icon/voucher/pulsa/' + provider + '.png'"
+                :src="'/icon/voucher/data/' + provider + '.png'"
                 width="284.29"
               />
             </v-alert>
@@ -35,7 +35,7 @@
 <script>
 import HambMenu from "../components/HambMenu";
 export default {
-  name: "Pulsa",
+  name: "Data",
   components: {
     HambMenu,
   },
