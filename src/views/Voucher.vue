@@ -19,7 +19,7 @@ export default {
     items: [
       { title: "Pulsa", link: "/pulsa" },
       { title: "Data", link: "/data" },
-      { title: "E-Money", link: "/e-money" },
+      { title: "E-Money", link: "/emoney" },
       { title: "Cash Out", link: "/cashout" },
     ],
   }),
