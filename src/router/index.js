@@ -3,12 +3,9 @@ import VueRouter from "vue-router";
 import Dashboard from "../views/Dashboard.vue";
 import Voucher from "../views/Voucher.vue";
 import Pulsa from "../views/Pulsa.vue";
-<<<<<<< HEAD
 import ListPulsa from "../views/ListPulsa.vue";
-=======
 import EMoney from "../views/EMoney.vue";
 import CashOut from "../views/CashOut.vue";
->>>>>>> 2982fc314ae2e40ac86b1e2ccd03f74e5c68328b
 
 Vue.use(VueRouter);
 
