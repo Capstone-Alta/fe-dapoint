@@ -41,35 +41,62 @@
       <v-col>
         <v-card>
           <v-alert outlined color="first" width="1400p" height="340.57">
-            <v-card
-              color="gray"
-              width="89"
-              height="37"
-              class="py-auto d-flex align-center justify-center"
-              elevation="0"
-            >
-              <img
-                src="/icon/home/calendar_today.png"
-                width="15"
-                height="16.5"
-              />
-              <span class="year-text ml-2">2022</span>
-            </v-card>
-            <v-card-title class="pa-0 mt-3"> {{ statsPoin.key }} </v-card-title>
-
-            <v-card-text class="pa-0">
-              <div class="point-value">
-                {{ statsPoin.value }}
-              </div>
-              <div class="year-text">
-                Total Reedem
-                <img src="/icon/home/arrow_up.png" class="ml-2" alt="" />
-              </div>
-              <div class="d-flex align-center">
-                <img src="/icon/home/done.png" alt="" />
-                <span style="color: #05cd99" class="ml-2">On Track</span>
-              </div>
-            </v-card-text>
+            <v-container fluid>
+              <v-row>
+                <v-col cols="3">
+                  <v-card
+                    color="gray"
+                    width="89"
+                    height="37"
+                    class="py-auto d-flex align-center justify-center"
+                    elevation="0"
+                  >
+                    <img
+                      src="/icon/home/calendar_today.png"
+                      width="15"
+                      height="16.5"
+                    />
+                    <span class="year-text ml-2">2022</span>
+                  </v-card>
+                  <v-card-title class="pa-0 mt-3">
+                    {{ statsPoin.key }}
+                  </v-card-title>
+                  <v-card-text class="pa-0">
+                    <div class="point-value">
+                      {{ statsPoin.value }}
+                    </div>
+                    <div class="year-text">
+                      Total Reedem
+                      <img src="/icon/home/arrow_up.png" class="ml-2" alt="" />
+                    </div>
+                    <div class="d-flex align-center">
+                      <img src="/icon/home/done.png" alt="" />
+                      <span style="color: #05cd99" class="ml-2">On Track</span>
+                    </div>
+                  </v-card-text>
+                </v-col>
+                <v-col cols="9">
+                  <v-sparkline
+                    :value="reedem"
+                    :gradient="gradient"
+                    :smooth="radius || false"
+                    :padding="padding"
+                    :line-width="width"
+                    :stroke-linecap="lineCap"
+                    :gradient-direction="gradientDirection"
+                    :fill="fill"
+                    :type="type"
+                    :auto-line-width="autoLineWidth"
+                    auto-draw
+                    :labels="month"
+                  >
+                    <template :label="month">
+                      {{ month }}
+                    </template></v-sparkline
+                  >
+                </v-col>
+              </v-row>
+            </v-container>
           </v-alert>
         </v-card>
       </v-col>
@@ -80,6 +107,14 @@
 <script>
 // import HelloWorld from "../components/HelloWorld";
 import HambMenu from "../components/HambMenu";
+const gradients = [
+  ["#222"],
+  ["#005389"],
+  ["red", "orange", "yellow"],
+  ["purple", "violet"],
+  ["#00c6ff", "#F0F", "#FF0"],
+  ["#f72047", "#ffd200", "#1feaea"],
+];
 
 export default {
   name: "Dashboard",
@@ -97,6 +132,28 @@ export default {
       key: "Point Reedem",
       value: "2000",
     },
+
+    width: 2,
+    radius: 10,
+    padding: 8,
+    lineCap: "round",
+    gradient: gradients[1],
+    value: [0, 2, 5, 9, 5, 10, 3, 5, 0, 0, 1, 8, 2, 9, 0],
+    grap_stats: [
+      { month: "JAN", reedem: 2000 },
+      { month: "FEB", reedem: 3000 },
+      { month: "MAR", reedem: 7000 },
+      { month: "APR", reedem: 2500 },
+      { month: "MEI", reedem: 4000 },
+      { month: "JUN", reedem: 5000 },
+    ],
+    month: ["JAN", "FEB", "MAR", "APR", "MEI", "JUN"],
+    reedem: [2000, 3000, 7000, 2500, 4000, 5000],
+    gradientDirection: "top",
+    gradients,
+    fill: false,
+    type: "trend",
+    autoLineWidth: false,
   }),
 };
 </script>
