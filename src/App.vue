@@ -12,8 +12,7 @@
     >
       <v-img
         aspect-ratio="1"
-        width="
-154.31"
+        width="100"
         src="https://picsum.photos/id/11/500/300"
         class="avatar"
       ></v-img>
@@ -24,7 +23,7 @@
           </v-btn>
         </div>
         <div class="d-flex align-center justify-space-around">
-          <img src="/icon/logo.png" width="59.72" />
+          <img src="/icon/logo.png" width="40" />
           <span class="text-logo">DaPoint Admin</span>
         </div>
       </div>
@@ -55,6 +54,14 @@
               </router-link>
             </v-list-item-title>
           </v-list-item-content>
+          <v-list-item-icon>
+            <!-- <v-icon> -->
+            <img
+              src="/icon/sidebar/right_arrow.png"
+              width="5.18"
+              height="8.7"
+            />
+          </v-list-item-icon>
         </v-list-item>
       </v-list>
 
@@ -123,8 +130,8 @@ export default {
 .avatar {
   border-radius: 50%;
   position: absolute;
-  left: 25%;
-  top: 19.09%;
+  left: 30%;
+  top: 22%;
 }
 .sidebar-menu {
   margin-top: 20px;
@@ -133,14 +140,14 @@ export default {
   font-family: "Inter";
   font-style: normal;
   font-weight: 500;
-  font-size: 20.7361px;
+  font-size: 16px;
   line-height: 25px;
 }
 .text-logo {
   font-family: "DM Sans";
   font-style: normal;
   font-weight: 500;
-  font-size: 24.8833px;
+  font-size: 20px;
   line-height: 32px;
   color: #005389;
 }
@@ -171,6 +178,6 @@ export default {
 }
 
 .drawer-bar {
-  background-image: linear-gradient(180deg, white 30%, #008fbf 30%);
+  background-image: linear-gradient(180deg, white 33%, #008fbf 33%);
 }
 </style>
