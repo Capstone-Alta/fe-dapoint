@@ -6,7 +6,8 @@
         <span class="text_first mx-2 welcome">Welcome, Jane Doe</span>
         <v-spacer></v-spacer>
         <v-alert outlined class="pa-0 ma-0" color="first" style="width: 60%">
-          <v-autocomplete dense solo hide-details></v-autocomplete>
+          <!-- <v-autocomplete dense solo hide-details></v-autocomplete> -->
+          <v-text-field dense solo hide-details flat> </v-text-field>
         </v-alert>
         <v-btn tile icon large class="ml-1 mr-4">
           <img src="/icon/notification.png" width="30" />
@@ -27,6 +28,7 @@
                 class="difference d-flex align-center justify-center mr-8"
                 width="106.25"
                 height="35.22"
+                flat
               >
                 <span style="color: #05cd99">
                   {{ stat.difference }}

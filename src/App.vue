@@ -4,29 +4,28 @@
       dark
       app
       height="925"
-      width="
-311.87"
+      width="280"
       class="drawer-bar"
       permanent
       v-if="drawer"
     >
-      <v-img
-        aspect-ratio="1"
-        width="100"
-        src="https://picsum.photos/id/11/500/300"
-        class="avatar"
-      ></v-img>
       <div class="">
         <div fluid class="d-flex justify-end">
           <v-btn @click="closeDrawer()" tile icon large class="ml-1 mr-4">
             <img src="icon/arrow.png" width="21.84" />
           </v-btn>
         </div>
-        <div class="d-flex align-center justify-space-around">
+        <div class="d-flex align-center justify-center">
           <img src="/icon/logo.png" width="40" />
-          <span class="text-logo">DaPoint Admin</span>
+          <span class="text-logo ml-2">DaPoint Admin</span>
         </div>
       </div>
+      <v-img
+        aspect-ratio="1"
+        width="120"
+        src="https://picsum.photos/id/11/500/300"
+        class="avatar"
+      ></v-img>
       <div class="nalo">
         <div class="name">Jane Doe</div>
         <div class="role">Proffesional Admin</div>
@@ -54,14 +53,14 @@
               </router-link>
             </v-list-item-title>
           </v-list-item-content>
-          <v-list-item-icon>
+          <div class="d-flex align-center">
             <!-- <v-icon> -->
             <img
               src="/icon/sidebar/right_arrow.png"
               width="5.18"
               height="8.7"
             />
-          </v-list-item-icon>
+          </div>
         </v-list-item>
       </v-list>
 
@@ -129,9 +128,9 @@ export default {
 
 .avatar {
   border-radius: 50%;
-  position: absolute;
+  position: relative;
   left: 30%;
-  top: 22%;
+  top: 0%;
 }
 .sidebar-menu {
   margin-top: 20px;
@@ -170,7 +169,7 @@ export default {
 }
 .nalo {
   text-align: center;
-  margin-top: 160px;
+  margin-top: 20px;
 }
 
 .router-link {
@@ -178,6 +177,6 @@ export default {
 }
 
 .drawer-bar {
-  background-image: linear-gradient(180deg, white 33%, #008fbf 33%);
+  background-image: linear-gradient(180deg, white 28%, #008fbf 28%);
 }
 </style>
