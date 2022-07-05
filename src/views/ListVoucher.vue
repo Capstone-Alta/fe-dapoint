@@ -41,12 +41,12 @@
           label="Search for voucher name, voucher id or something ..."
           solo
           dense
-          elevation="0"
+          flat
           color="#dcf3fb"
           background-color="#dcf3fb"
           hide-details
         ></v-text-field>
-        <v-menu offset-y>
+        <v-menu offset-y left bottom>
           <template v-slot:activator="{ on, attrs }">
             <v-btn
               tile

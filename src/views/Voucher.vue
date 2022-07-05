@@ -17,10 +17,10 @@ export default {
   name: "Voucher",
   data: () => ({
     items: [
-      { title: "Pulsa", link: "/pulsa" },
-      { title: "Data", link: "/data" },
-      { title: "E-Money", link: "/emoney" },
-      { title: "Cash Out", link: "/cashout" },
+      { title: "Pulsa", link: "/pulsa", icon: "pulsa" },
+      { title: "Data", link: "/data", icon: "data" },
+      { title: "E-Money", link: "/emoney", icon: "emoney" },
+      { title: "Cash Out", link: "/cashout", icon: "cashout" },
     ],
   }),
 };
