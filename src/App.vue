@@ -88,7 +88,7 @@ export default {
   data: () => ({
     items: [
       { title: "Dashboard", icon: "dashboard", link: "/" },
-      { title: "Data User", icon: "data_user", link: "/data_user" },
+      { title: "Data User", icon: "data_user", link: "/datauser" },
       { title: "Voucher Stock", icon: "voucher", link: "/voucher" },
     ],
     // drawer: false,
