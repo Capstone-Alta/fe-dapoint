@@ -5,6 +5,7 @@ import Voucher from "../views/Voucher.vue";
 import Pulsa from "../views/Pulsa.vue";
 import EMoney from "../views/EMoney.vue";
 import CashOut from "../views/CashOut.vue";
+import DataUser from "../views/DataUser.vue";
 
 Vue.use(VueRouter);
 
@@ -13,6 +14,11 @@ const routes = [
     path: "/",
     name: "dashboard",
     component: Dashboard,
+  },
+  {
+    path: "/datauser",
+    name: "datauser",
+    component: DataUser,
   },
   {
     path: "/voucher",
