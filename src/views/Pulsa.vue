@@ -12,7 +12,7 @@
     </v-row>
     <v-row>
       <v-col v-for="provider in providers" :key="provider">
-        <router-link to="/listvoucher">
+        <router-link to="/listvoucher/pulsa">
           <v-card elevation="0">
             <v-alert
               outlined

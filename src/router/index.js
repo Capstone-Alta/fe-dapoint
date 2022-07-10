@@ -50,7 +50,7 @@ const routes = [
     component: CashOut,
   },
   {
-    path: "/listvoucher",
+    path: "/listvoucher/:voucher_type",
     name: "listvoucher",
     component: ListVoucher,
   },

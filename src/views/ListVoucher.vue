@@ -4,7 +4,9 @@
     <v-row>
       <v-app-bar dense color="white" elevation="0" class="px-0">
         <HambMenu ref="hamb" />
-        <span class="text_first mx-2 welcome">Pulsa</span>
+        <span class="text_first mx-2 welcome text-capitalize">
+          {{ voucher_type }}
+        </span>
         <v-spacer></v-spacer>
         <v-btn tile icon large class="ml-1 mr-4" @click="openSnackbar()">
           <img src="/icon/notification.png" width="30" />
@@ -238,6 +240,9 @@ export default {
   computed: {
     snackbar() {
       return this.$store.state.snackbar;
+    },
+    voucher_type() {
+      return this.$route.params.voucher_type;
     },
   },
 };
