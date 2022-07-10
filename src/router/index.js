@@ -7,6 +7,7 @@ import Data from "../views/Data.vue";
 import EMoney from "../views/EMoney.vue";
 import CashOut from "../views/CashOut.vue";
 import ListVoucher from "../views/ListVoucher.vue";
+import DataUser from "../views/DataUser.vue";
 import LoginAdmin from "../views/LoginAdmin.vue";
 import Register from "../views/Register.vue";
 
@@ -17,6 +18,11 @@ const routes = [
     path: "/",
     name: "dashboard",
     component: Dashboard,
+  },
+  {
+    path: "/datauser",
+    name: "datauser",
+    component: DataUser,
   },
   {
     path: "/voucher",

@@ -103,7 +103,7 @@ export default {
         title: "Data User",
         icon: "data_user",
         icon_clicked: "data_user_clicked",
-        link: "/data_user",
+        link: "/datauser",
       },
       {
         title: "Voucher Stock",
