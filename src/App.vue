@@ -29,39 +29,47 @@
       <div class="nalo">
         <div class="name">Jane Doe</div>
         <div class="role">Proffesional Admin</div>
+        <!-- ygy {{ group }} -->
       </div>
       <v-list class="sidebar-menu">
-        <v-list-item v-for="item in items" :key="item.title" link>
-          <v-list-item-icon>
-            <!-- <v-icon> -->
-            <v-img
-              :src="'/icon/sidebar/' + item.icon + '.png'"
-              width="25.82"
-              height="19.41"
-            ></v-img>
-            <!-- </v-icon> -->
-          </v-list-item-icon>
+        <v-list-item-group active-class="deep-purple--text text--accent-4">
+          <router-link
+            class="router-link"
+            v-for="item in items"
+            :key="item.title"
+            :to="item.link"
+          >
+            <v-list-item
+              link
+              active-class="deep-purple--text text--accent-4"
+              active
+            >
+              <v-list-item-icon>
+                <!-- <v-icon> -->
+                <v-img
+                  :src="'/icon/sidebar/' + item.icon + '.png'"
+                  width="25.82"
+                  height="19.41"
+                ></v-img>
+                <!-- </v-icon> -->
+              </v-list-item-icon>
 
-          <v-list-item-content>
-            <v-list-item-title class="sidebar-text">
-              <router-link
-                class="router-link"
-                :to="item.link"
-                style="color: white"
-              >
-                {{ item.title }}
-              </router-link>
-            </v-list-item-title>
-          </v-list-item-content>
-          <div class="d-flex align-center">
-            <!-- <v-icon> -->
-            <img
-              src="/icon/sidebar/right_arrow.png"
-              width="5.18"
-              height="8.7"
-            />
-          </div>
-        </v-list-item>
+              <v-list-item-content>
+                <v-list-item-title class="sidebar-text" style="color: white">
+                  {{ item.title }}
+                </v-list-item-title>
+              </v-list-item-content>
+              <div class="d-flex align-center">
+                <!-- <v-icon> -->
+                <img
+                  src="/icon/sidebar/right_arrow.png"
+                  width="5.18"
+                  height="8.7"
+                />
+              </div>
+            </v-list-item>
+          </router-link>
+        </v-list-item-group>
       </v-list>
 
       <template v-slot:append>
@@ -85,10 +93,26 @@ export default {
 
   data: () => ({
     items: [
-      { title: "Dashboard", icon: "dashboard", link: "/" },
-      { title: "Data User", icon: "data_user", link: "/data_user" },
-      { title: "Voucher Stock", icon: "voucher", link: "/voucher" },
+      {
+        title: "Dashboard",
+        icon: "dashboard",
+        icon_clicked: "dashboard_clicked",
+        link: "/",
+      },
+      {
+        title: "Data User",
+        icon: "data_user",
+        icon_clicked: "data_user_clicked",
+        link: "/data_user",
+      },
+      {
+        title: "Voucher Stock",
+        icon: "voucher",
+        icon_clicked: "voucher_clicked",
+        link: "/voucher",
+      },
     ],
+    group: 0,
     // drawer: false,
   }),
   computed: {

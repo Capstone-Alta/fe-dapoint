@@ -1,5 +1,5 @@
 <template>
-  <v-container>
+  <v-container fluid class="px-16">
     <v-row>
       <v-app-bar dense color="white" elevation="0" class="px-0">
         <HambMenu ref="hamb" />

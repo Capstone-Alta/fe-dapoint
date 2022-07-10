@@ -6,6 +6,7 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     drawer: false,
+    snackbar: false,
   },
   getters: {},
   mutations: {
@@ -17,6 +18,12 @@ export default new Vuex.Store({
     },
     closeDrawer(state) {
       state.drawer = false;
+    },
+    openSnackbar(state) {
+      state.snackbar = true;
+    },
+    closeSnackbar(state) {
+      state.snackbar = false;
     },
   },
   actions: {},

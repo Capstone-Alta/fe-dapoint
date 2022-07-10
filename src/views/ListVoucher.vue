@@ -1,33 +1,16 @@
 <template>
   <v-container fluid class="px-16">
+    <Notification ref="notif" />
     <v-row>
       <v-app-bar dense color="white" elevation="0" class="px-0">
         <HambMenu ref="hamb" />
         <span class="text_first mx-2 welcome">Pulsa</span>
         <v-spacer></v-spacer>
-        <v-btn tile icon large class="ml-1 mr-4">
+        <v-btn tile icon large class="ml-1 mr-4" @click="openSnackbar()">
           <img src="/icon/notification.png" width="30" />
         </v-btn>
       </v-app-bar>
     </v-row>
-    <!-- <v-row>
-      <v-dialog transition="dialog-top-transition" max-width="600">
-        <template v-slot:activator="{ on, attrs }">
-          <v-btn color="primary" v-bind="attrs" v-on="on">From the top</v-btn>
-        </template>
-        <template v-slot:default="dialog">
-          <v-card>
-            <v-toolbar color="primary" dark>Opening from the top</v-toolbar>
-            <v-card-text>
-              <div class="text-h2 pa-12">Hello world!</div>
-            </v-card-text>
-            <v-card-actions class="justify-end">
-              <v-btn text @click="dialog.value = false">Close</v-btn>
-            </v-card-actions>
-          </v-card>
-        </template>
-      </v-dialog>
-    </v-row> -->
     <v-row class="d-flex justify-center">
       <v-card
         class="my-7 px-4 d-flex align-center justify-space-between"
@@ -98,7 +81,7 @@
                 </v-btn>
               </template>
               <template v-slot:default="">
-                <v-card class="d-flex justify-center align-center" height="507">
+                <v-card class="d-flex justify-center align-center" height="400">
                   <!-- <v-toolbar color="primary" dark
                     >Opening from the top</v-toolbar
                   > -->
@@ -163,11 +146,11 @@
                 >
               </template>
               <template v-slot:default="">
-                <v-card class="d-flex justify-center align-center" height="507">
+                <v-card class="d-flex justify-center align-center" height="400">
                   <v-card-text class="mx-2">
-                    <div class="pa-2">
+                    <div class="pa-1">
                       <div class="text-detail">Amount of Voucher</div>
-                      <v-alert outlined color="first" class="pa-0">
+                      <v-alert outlined color="first" class="pa-0 ma-0">
                         <v-text-field
                           :value="voucher.nominal"
                           class="text-detail-value"
@@ -178,9 +161,9 @@
                         </v-text-field>
                       </v-alert>
                     </div>
-                    <div class="pa-2">
+                    <div class="pa-1">
                       <div class="text-detail">Restock</div>
-                      <v-alert outlined color="first" class="pa-0">
+                      <v-alert outlined color="first" class="pa-0 ma-0">
                         <v-text-field
                           :value="voucher.nominal"
                           class="text-detail-value"
@@ -191,9 +174,9 @@
                         </v-text-field>
                       </v-alert>
                     </div>
-                    <div class="pa-2">
+                    <div class="pa-1">
                       <div class="text-detail">Preview</div>
-                      <v-alert outlined color="first" class="pa-0">
+                      <v-alert outlined color="first" class="pa-0 ma-0">
                         <v-text-field
                           :value="voucher.nominal"
                           class="text-detail-value"
@@ -224,11 +207,13 @@
 </template>
 
 <script>
+import Notification from "@/components/Notification.vue";
 import HambMenu from "../components/HambMenu";
 export default {
   name: "ListVoucher",
   components: {
     HambMenu,
+    Notification,
   },
   data: () => ({
     vouchers: [
@@ -243,7 +228,18 @@ export default {
       { nominal: "9000", poin: "500" },
     ],
     items: [{ title: "Sold" }, { title: "All Voucher" }],
+    text: `Hello, I'm a snackbar`,
   }),
+  methods: {
+    openSnackbar() {
+      this.$store.commit("openSnackbar");
+    },
+  },
+  computed: {
+    snackbar() {
+      return this.$store.state.snackbar;
+    },
+  },
 };
 </script>
 
@@ -272,7 +268,7 @@ export default {
   font-family: "Inter";
   font-style: normal;
   font-weight: 500;
-  font-size: 28px;
+  font-size: 20px;
   line-height: 150%;
   /* identical to box height, or 45px */
   color: #005389;
@@ -284,7 +280,7 @@ export default {
   font-family: "Inter";
   font-style: normal;
   font-weight: 400;
-  font-size: 28px;
+  font-size: 20px;
   line-height: 36px;
   color: #2f2e41;
 }
@@ -293,5 +289,32 @@ export default {
   color: #005389;
   text-decoration: none;
   text-align: center;
+}
+
+.notif-title {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  color: #005389;
+}
+
+.notif-read {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  color: #005389;
+}
+
+.notif-text {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  color: #2f2e41;
 }
 </style>

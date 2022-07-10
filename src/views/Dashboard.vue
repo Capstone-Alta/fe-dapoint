@@ -3,7 +3,12 @@
     <v-row>
       <v-app-bar dense color="white" elevation="0">
         <HambMenu ref="hamb" />
-        <span class="text_first mx-2 welcome">Welcome, Jane Doe</span>
+        <span v-if="!drawer" class="text_first mx-2 welcome"
+          >Welcome, Jane Doe</span
+        >
+        <span v-else class="text_first mx-2 welcome-small"
+          >Welcome, Jane Doe</span
+        >
         <v-spacer></v-spacer>
         <v-alert outlined class="pa-0 ma-0" color="first" style="width: 60%">
           <!-- <v-autocomplete dense solo hide-details></v-autocomplete> -->
@@ -157,6 +162,11 @@ export default {
     type: "trend",
     autoLineWidth: false,
   }),
+  computed: {
+    drawer() {
+      return this.$store.state.drawer;
+    },
+  },
 };
 </script>
 
@@ -166,6 +176,15 @@ export default {
   font-style: normal;
   font-weight: 500;
   font-size: 30px;
+  line-height: 150%;
+  letter-spacing: -0.011em;
+  color: #005389;
+}
+.welcome-small {
+  font-family: "DM Sans";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 26px;
   line-height: 150%;
   letter-spacing: -0.011em;
   color: #005389;
