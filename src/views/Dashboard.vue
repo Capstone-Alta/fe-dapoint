@@ -1,5 +1,6 @@
 <template>
   <v-container fluid class="px-16">
+    <notification />
     <v-row>
       <v-app-bar dense color="white" elevation="0">
         <HambMenu ref="hamb" />
@@ -14,15 +15,13 @@
           <!-- <v-autocomplete dense solo hide-details></v-autocomplete> -->
           <v-text-field dense solo hide-details flat> </v-text-field>
         </v-alert>
-        <v-btn tile icon large class="ml-1 mr-4">
-          <img src="/icon/notification.png" width="30" />
-        </v-btn>
+        <btn-notif />
       </v-app-bar>
     </v-row>
     <v-row>
-      <v-col v-for="stat in stats" :key="stat">
+      <v-col v-for="stat in stats" :key="stat" cols="6">
         <v-card elevation="0">
-          <v-alert outlined color="first" height="178.64" class="px-8">
+          <v-alert outlined color="first" max-height="160" class="px-8">
             <v-card-title class="pa-0"> {{ stat.key }}</v-card-title>
             <v-card-text class="pa-0 d-flex align-center justify-space-between">
               <div class="card-value">
@@ -31,8 +30,8 @@
               <v-card
                 color="green_diff"
                 class="difference d-flex align-center justify-center mr-8"
-                width="106.25"
-                height="35.22"
+                width="80"
+                height="30"
                 flat
               >
                 <span style="color: #05cd99">
@@ -47,7 +46,7 @@
     <v-row>
       <v-col>
         <v-card>
-          <v-alert outlined color="first" width="1400p" height="340.57">
+          <v-alert outlined color="first" width="1400p" height="280">
             <v-container fluid>
               <v-row>
                 <v-col cols="3">
@@ -114,6 +113,8 @@
 <script>
 // import HelloWorld from "../components/HelloWorld";
 import HambMenu from "../components/HambMenu";
+import BtnNotif from "../components/BtnNotif";
+import Notification from "@/components/Notification.vue";
 const gradients = [
   ["#222"],
   ["#005389"],
@@ -128,6 +129,8 @@ export default {
 
   components: {
     HambMenu,
+    Notification,
+    BtnNotif,
   },
 
   data: () => ({
@@ -194,8 +197,8 @@ export default {
   font-family: "DM Sans";
   font-style: normal;
   font-weight: 700;
-  font-size: 90px;
-  line-height: 117px;
+  font-size: 80px;
+  line-height: 80px;
 }
 
 .year-text {

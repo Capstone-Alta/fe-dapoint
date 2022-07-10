@@ -8,9 +8,7 @@
           {{ voucher_type }}
         </span>
         <v-spacer></v-spacer>
-        <v-btn tile icon large class="ml-1 mr-4" @click="openSnackbar()">
-          <img src="/icon/notification.png" width="30" />
-        </v-btn>
+        <btn-notif />
       </v-app-bar>
     </v-row>
     <v-row class="d-flex justify-center">
@@ -211,11 +209,13 @@
 <script>
 import Notification from "@/components/Notification.vue";
 import HambMenu from "../components/HambMenu";
+import BtnNotif from "../components/BtnNotif";
 export default {
   name: "ListVoucher",
   components: {
     HambMenu,
     Notification,
+    BtnNotif,
   },
   data: () => ({
     vouchers: [
@@ -238,9 +238,6 @@ export default {
     },
   },
   computed: {
-    snackbar() {
-      return this.$store.state.snackbar;
-    },
     voucher_type() {
       return this.$route.params.voucher_type;
     },

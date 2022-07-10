@@ -1,13 +1,12 @@
 <template>
   <v-container fluid class="px-16">
+    <notification />
     <v-row>
       <v-app-bar dense color="white" elevation="0" class="px-0">
         <HambMenu ref="hamb" />
         <span class="text_first mx-2 welcome">Voucher</span>
         <v-spacer></v-spacer>
-        <v-btn tile icon large class="ml-1 mr-4">
-          <img src="/icon/notification.png" width="30" />
-        </v-btn>
+        <btn-notif />
       </v-app-bar>
     </v-row>
     <v-row class="d-flex justify-center">
@@ -66,10 +65,14 @@
 
 <script>
 import HambMenu from "../components/HambMenu";
+import BtnNotif from "../components/BtnNotif";
+import Notification from "@/components/Notification.vue";
 export default {
   name: "Voucher",
   components: {
     HambMenu,
+    BtnNotif,
+    Notification,
   },
   data: () => ({
     items: [
