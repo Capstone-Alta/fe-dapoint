@@ -28,42 +28,54 @@
     <div class="nalo">
       <div class="name">Jane Doe</div>
       <div class="role">Proffesional Admin</div>
-      <!-- ygy {{ group }} -->
     </div>
-    <v-list class="sidebar-menu">
-      <v-list-item-group active-class="deep-purple--text text--accent-4">
+    <v-list class="sidebar-menu px-2">
+      <v-list-item-group>
         <router-link
           class="router-link"
-          active-class="deep-purple--text text--accent-4"
-          v-for="item in items"
+          v-for="(item, index) in items"
           :key="item.title"
           :to="item.link"
         >
           <v-list-item
+            :class="group == index ? 'white-list' : ''"
             link
-            active-class="deep-purple--text text--accent-4"
-            active
+            @click="group = index"
           >
             <v-list-item-icon>
-              <!-- <v-icon> -->
               <v-img
-                :src="'/icon/sidebar/' + item.icon + '.png'"
+                :src="'/icon/sidebar/' + item.icon.origin + '.png'"
                 width="25.82"
                 height="19.41"
+                v-if="group != index"
               ></v-img>
-              <!-- </v-icon> -->
+              <v-img
+                :src="'/icon/sidebar/' + item.icon.clicked + '.png'"
+                width="25.82"
+                height="19.41"
+                v-else
+              ></v-img>
             </v-list-item-icon>
             <v-list-item-content>
-              <v-list-item-title class="sidebar-text" style="color: white">
+              <v-list-item-title
+                class="sidebar-text"
+                :style="group != index ? 'color: white' : 'color: #005389'"
+              >
                 {{ item.title }}
               </v-list-item-title>
             </v-list-item-content>
             <div class="d-flex align-center">
-              <!-- <v-icon> -->
               <img
                 src="/icon/sidebar/right_arrow.png"
                 width="5.18"
                 height="8.7"
+                v-if="group != item"
+              />
+              <img
+                src="/icon/sidebar/right_arrow_clicked.png"
+                width="5.18"
+                height="8.7"
+                v-else
               />
             </div>
           </v-list-item>
@@ -84,31 +96,35 @@
 <script>
 export default {
   name: "SidebarMenu",
-
   data: () => ({
     items: [
       {
         title: "Dashboard",
-        icon: "dashboard",
-        icon_clicked: "dashboard_clicked",
+        icon: {
+          origin: "dashbaord",
+          clicked: "dashboard_clicked",
+        },
         link: "/",
       },
       {
         title: "Data User",
-        icon: "data_user",
-        icon_clicked: "data_user_clicked",
+        icon: {
+          origin: "data_user",
+          clicked: "data_user_clicked",
+        },
         link: "/datauser",
       },
       {
         title: "Voucher Stock",
-        icon: "voucher",
-        icon_clicked: "voucher_clicked",
+        icon: {
+          origin: "voucher",
+          clicked: "voucher_clicked",
+        },
         link: "/voucher",
       },
     ],
     group: 0,
   }),
-
   computed: {
     drawer() {
       return this.$store.state.drawer;
@@ -124,7 +140,12 @@ export default {
   },
 };
 </script>
+
 <style scoped>
+.white-list {
+  background-color: white;
+  border-radius: 20%;
+}
 .retangle-sidebar {
   position: absolute;
   width: 285.64px;
