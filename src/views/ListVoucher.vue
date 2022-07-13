@@ -72,13 +72,7 @@
           <v-container fluid class="d-flex flex-column align-center py-0">
             <v-dialog transition="dialog-top-transition" max-width="425">
               <template v-slot:activator="{ on, attrs }">
-                <v-btn
-                  class="align-self-end"
-                  v-bind="attrs"
-                  v-on="on"
-                  @click="voucherDetail(voucher.ID)"
-                  icon
-                >
+                <v-btn class="align-self-end" v-bind="attrs" v-on="on" icon>
                   <img
                     width="7.69"
                     height="13.37"
@@ -140,62 +134,82 @@
             </div>
             <v-dialog transition="dialog-top-transition" max-width="425">
               <template v-slot:activator="{ on, attrs }">
-                <v-btn color="primary" class="mt-6" v-bind="attrs" v-on="on"
+                <v-btn
+                  color="primary"
+                  class="mt-6"
+                  v-bind="attrs"
+                  v-on="on"
+                  @click="setAmount(voucher.stock)"
                   >Add Stock</v-btn
                 >
               </template>
               <template v-slot:default="">
-                <v-card class="d-flex justify-center align-center" height="400">
-                  <v-card-text class="mx-2">
-                    <div class="pa-1">
-                      <div class="text-detail">Amount of Voucher</div>
-                      <v-alert outlined color="first" class="pa-0 ma-0">
-                        <v-text-field
-                          :value="voucher.nominal"
-                          class="text-detail-value"
-                          solo
-                          readonly
-                          hide-details
-                        >
-                        </v-text-field>
-                      </v-alert>
-                    </div>
-                    <div class="pa-1">
-                      <div class="text-detail">Restock</div>
-                      <v-alert outlined color="first" class="pa-0 ma-0">
-                        <v-text-field
-                          :value="voucher.nominal"
-                          class="text-detail-value"
-                          solo
-                          readonly
-                          hide-details
-                        >
-                        </v-text-field>
-                      </v-alert>
-                    </div>
-                    <div class="pa-1">
-                      <div class="text-detail">Preview</div>
-                      <v-alert outlined color="first" class="pa-0 ma-0">
-                        <v-text-field
-                          :value="voucher.nominal"
-                          class="text-detail-value"
-                          solo
-                          readonly
-                          hide-details
-                        >
-                        </v-text-field>
-                      </v-alert>
-                    </div>
-                    <v-btn
-                      block
-                      color="primary"
-                      elevation="2"
-                      large
-                      class="mt-6"
-                      >Submit</v-btn
-                    >
-                  </v-card-text>
-                </v-card>
+                <v-form
+                  @submit="
+                    updateVoucher(
+                      voucher.ID,
+                      voucher.nama,
+                      temp_amount,
+                      voucher.harga_point
+                    )
+                  "
+                >
+                  <v-card
+                    class="d-flex justify-center align-center"
+                    height="400"
+                  >
+                    <v-card-text class="mx-2">
+                      <div class="pa-1">
+                        <div class="text-detail">Amount of Voucher</div>
+                        <v-alert outlined color="first" class="pa-0 ma-0">
+                          <v-text-field
+                            :value="voucher.stock"
+                            class="text-detail-value"
+                            solo
+                            readonly
+                            hide-details
+                          >
+                          </v-text-field>
+                        </v-alert>
+                      </div>
+                      <div class="pa-1">
+                        <div class="text-detail">Restock</div>
+                        <v-alert outlined color="first" class="pa-0 ma-0">
+                          <v-text-field
+                            v-model.number="amount_added"
+                            @keyup="restock()"
+                            class="text-detail-value"
+                            solo
+                            hide-details
+                            type="number"
+                          >
+                          </v-text-field>
+                        </v-alert>
+                      </div>
+                      <div class="pa-1">
+                        <div class="text-detail">Preview</div>
+                        <v-alert outlined color="first" class="pa-0 ma-0">
+                          <v-text-field
+                            :value="temp_amount"
+                            class="text-detail-value"
+                            solo
+                            hide-details
+                          >
+                          </v-text-field>
+                        </v-alert>
+                      </div>
+                      <v-btn
+                        block
+                        color="primary"
+                        elevation="2"
+                        large
+                        class="mt-6"
+                        type="submit"
+                        >Submit</v-btn
+                      >
+                    </v-card-text>
+                  </v-card>
+                </v-form>
               </template>
             </v-dialog>
           </v-container>
@@ -230,16 +244,31 @@ export default {
     ],
     items: [{ title: "Sold" }, { title: "All Voucher" }],
     text: `Hello, I'm a snackbar`,
+    amount_added: 0,
+    amount: 0,
   }),
   methods: {
     openSnackbar() {
       this.$store.commit("openSnackbar");
     },
-    voucherDetail(id) {
-      console.log(id);
-      this.$store.dispatch("voucher/voucherDetail", {
-        id,
+    fetchVoucher(query) {
+      this.$store.dispatch("voucher/fetchVoucher", {
+        query,
       });
+    },
+    updateVoucher(id, nama, stock, harga_point) {
+      this.$store.dispatch("voucher/updateVoucher", {
+        id,
+        nama,
+        stock,
+        harga_point,
+      });
+    },
+    setAmount(v_stock) {
+      this.amount = v_stock;
+    },
+    restock() {
+      this.temp_amount = this.amount + this.amount_added;
     },
   },
   computed: {
@@ -247,14 +276,14 @@ export default {
       return this.$route.params.voucher_type;
     },
     vouchers() {
-      return this.$store.state.voucher.vouchers;
+      return this.$store.state.voucher.vouchers.data;
     },
-    vou_detail() {
-      return this.$store.state.voucher.voucher;
+    temp_amount() {
+      return this.amount + this.amount_added;
     },
   },
   mounted() {
-    this.$store.dispatch("voucher/fetchVouchers");
+    this.fetchVoucher("getall");
   },
 };
 </script>

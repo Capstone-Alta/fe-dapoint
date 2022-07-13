@@ -134,10 +134,10 @@ export default {
   },
 
   data: () => ({
-    stats: [
-      { key: "Total User", value: "1000", difference: "+500" },
-      { key: "Voucher Avaible", value: "1000", difference: "+500" },
-    ],
+    // stats: [
+    //   { key: "Total User", value: "1000", difference: "+500" },
+    //   { key: "Voucher Avaible", value: "1000", difference: "+500" },
+    // ],
     statsPoin: {
       key: "Point Reedem",
       value: "2000",
@@ -165,10 +165,30 @@ export default {
     type: "trend",
     autoLineWidth: false,
   }),
+  methods: {
+    fetchVoucher(query) {
+      // console.log(query);
+      this.$store.dispatch("voucher/fetchVoucher", {
+        query,
+      });
+    },
+  },
   computed: {
     drawer() {
       return this.$store.state.drawer;
     },
+    vou_count() {
+      return this.$store.state.voucher.vouchers.count;
+    },
+    stats() {
+      return [
+        { key: "Total User", value: "1000", difference: "+500" },
+        { key: "Voucher Avaible", value: this.vou_count, difference: "+500" },
+      ];
+    },
+  },
+  mounted() {
+    this.fetchVoucher("getall");
   },
 };
 </script>

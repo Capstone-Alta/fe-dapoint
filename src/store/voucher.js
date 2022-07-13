@@ -18,19 +18,25 @@ export default {
     },
   },
   actions: {
-    fetchVouchers(store) {
-      const url = `http://159.223.81.185:5011/admin/voucher/getall`;
+    fetchVoucher(store, { query }) {
+      const url = `http://159.223.81.185:5011/admin/voucher/${query}`;
       axios.get(url).then((response) => {
-        console.log("vouchers : ", response.data.data);
-        store.commit("setVouchers", response.data.data);
+        console.log("vouchers : ", response.data);
+        store.commit("setVouchers", response.data);
       });
     },
-    voucherDetail(store, { id }) {
-      const url = `http://159.223.81.185:5011/admin/voucher/${id}`;
-      axios.get(url).then((response) => {
-        console.log("voucher detail : ", response.data.data);
-        store.commit("setVoucherDetail", response.data.data);
-      });
+    updateVoucher(store, { id, nama, stock, harga_point }) {
+      axios.put(
+        `http://159.223.81.185:5011/admin/voucher/${id}`,
+        {
+          nama,
+          stock,
+          harga_point,
+        },
+        {
+          // Config
+        }
+      );
     },
   },
 };
