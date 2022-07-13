@@ -12,19 +12,21 @@
     </v-row>
     <v-row>
       <v-col v-for="provider in providers" :key="provider">
-        <v-card elevation="0">
-          <v-alert
-            outlined
-            color="first"
-            height="178.64"
-            class="px-8 d-flex align-center justify-center"
-          >
-            <img
-              :src="'/icon/voucher/cashout/' + provider + '.png'"
-              width="284.29"
-            />
-          </v-alert>
-        </v-card>
+        <router-link to="/listvoucher/data">
+          <v-card elevation="0">
+            <v-alert
+              outlined
+              color="first"
+              height="178.64"
+              class="px-8 d-flex align-center justify-center"
+            >
+              <img
+                :src="'/icon/voucher/cashout/' + provider + '.png'"
+                width="284.29"
+              />
+            </v-alert>
+          </v-card>
+        </router-link>
       </v-col>
     </v-row>
   </v-container>
