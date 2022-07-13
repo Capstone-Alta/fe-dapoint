@@ -1,5 +1,7 @@
 import Vue from "vue";
 import Vuex from "vuex";
+// import axios from "axios";
+import voucher from "./voucher";
 
 Vue.use(Vuex);
 
@@ -27,5 +29,10 @@ export default new Vuex.Store({
     },
   },
   actions: {},
-  modules: {},
+  modules: {
+    voucher: {
+      namespaced: true,
+      ...voucher,
+    },
+  },
 });

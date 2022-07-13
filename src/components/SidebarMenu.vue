@@ -101,7 +101,7 @@ export default {
       {
         title: "Dashboard",
         icon: {
-          origin: "dashbaord",
+          origin: "dashboard",
           clicked: "dashboard_clicked",
         },
         link: "/",
@@ -144,7 +144,8 @@ export default {
 <style scoped>
 .white-list {
   background-color: white;
-  border-radius: 20%;
+  border-radius: 0%;
+  /* max-width: 70%; */
 }
 .retangle-sidebar {
   position: absolute;

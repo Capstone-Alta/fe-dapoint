@@ -72,7 +72,13 @@
           <v-container fluid class="d-flex flex-column align-center py-0">
             <v-dialog transition="dialog-top-transition" max-width="425">
               <template v-slot:activator="{ on, attrs }">
-                <v-btn class="align-self-end" v-bind="attrs" v-on="on" icon>
+                <v-btn
+                  class="align-self-end"
+                  v-bind="attrs"
+                  v-on="on"
+                  @click="voucherDetail(voucher.ID)"
+                  icon
+                >
                   <img
                     width="7.69"
                     height="13.37"
@@ -82,16 +88,12 @@
               </template>
               <template v-slot:default="">
                 <v-card class="d-flex justify-center align-center" height="400">
-                  <!-- <v-toolbar color="primary" dark
-                    >Opening from the top</v-toolbar
-                  > -->
                   <v-card-text class="mx-2">
-                    <!-- <div class="text-h2 pa-12">{{ voucher.nominal }}</div> -->
                     <div class="pa-2">
                       <div class="text-detail">Voucher ID</div>
                       <v-alert outlined color="first" class="pa-0">
                         <v-text-field
-                          :value="voucher.nominal"
+                          :value="voucher.ID"
                           class="text-detail-value"
                           solo
                           readonly
@@ -104,7 +106,7 @@
                       <div class="text-detail">Voucher Nama</div>
                       <v-alert outlined color="first" class="pa-0">
                         <v-text-field
-                          :value="voucher.nominal"
+                          :value="voucher.name"
                           class="text-detail-value"
                           solo
                           readonly
@@ -117,7 +119,7 @@
                       <div class="text-detail">Voucher Amount</div>
                       <v-alert outlined color="first" class="pa-0">
                         <v-text-field
-                          :value="voucher.nominal"
+                          :value="voucher.harga_point"
                           class="text-detail-value"
                           solo
                           readonly
@@ -127,17 +129,14 @@
                       </v-alert>
                     </div>
                   </v-card-text>
-                  <!-- <v-card-actions class="justify-end">
-                    <v-btn text @click="dialog.value = false">Close</v-btn>
-                  </v-card-actions> -->
                 </v-card>
               </template>
             </v-dialog>
             <div class="text-nominal mb-2">
-              {{ voucher.nominal }}
+              {{ voucher.name }}
             </div>
             <div class="text-poin" style="color: #ff3d00">
-              Poin : {{ voucher.poin }}
+              Poin : {{ voucher.harga_point }}
             </div>
             <v-dialog transition="dialog-top-transition" max-width="425">
               <template v-slot:activator="{ on, attrs }">
@@ -218,7 +217,7 @@ export default {
     BtnNotif,
   },
   data: () => ({
-    vouchers: [
+    vouchersa: [
       { nominal: "1000", poin: "500" },
       { nominal: "2000", poin: "500" },
       { nominal: "3000", poin: "500" },
@@ -236,11 +235,26 @@ export default {
     openSnackbar() {
       this.$store.commit("openSnackbar");
     },
+    voucherDetail(id) {
+      console.log(id);
+      this.$store.dispatch("voucher/voucherDetail", {
+        id,
+      });
+    },
   },
   computed: {
     voucher_type() {
       return this.$route.params.voucher_type;
     },
+    vouchers() {
+      return this.$store.state.voucher.vouchers;
+    },
+    vou_detail() {
+      return this.$store.state.voucher.voucher;
+    },
+  },
+  mounted() {
+    this.$store.dispatch("voucher/fetchVouchers");
   },
 };
 </script>

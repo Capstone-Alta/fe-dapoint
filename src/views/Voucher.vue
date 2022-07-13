@@ -82,6 +82,9 @@ export default {
       { title: "Cash Out", link: "/cashout", icon: "cashout" },
     ],
   }),
+  mounted() {
+    this.$store.dispatch("fetchVouchers");
+  },
 };
 </script>
 
