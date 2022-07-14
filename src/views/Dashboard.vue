@@ -167,11 +167,34 @@ export default {
   }),
   methods: {
     fetchVoucher(query) {
-      // console.log(query);
       this.$store.dispatch("voucher/fetchVoucher", {
         query,
       });
     },
+    fetchUser(query) {
+      this.$store.dispatch("user/fetchUser", {
+        query,
+      });
+    },
+    fetchStatsReed(query) {
+      this.$store.dispatch("voucher/fetchStatsReed", {
+        query,
+      });
+    },
+    splitGraph(item, index) {
+      // this.month += index;
+      // this.reedem += item;
+      console.log("index : ", index);
+      console.log("item : ", item);
+    },
+    // graphReed() {
+    //   console.log("AAA");
+    //   console.log(this.statsReed);
+    //   // this.statsReed.forEach((element) => {
+    //   //   console.log("element: ", element);
+    //   //   // console.log("index: ", index);
+    //   // });
+    // },
   },
   computed: {
     drawer() {
@@ -180,15 +203,25 @@ export default {
     vou_count() {
       return this.$store.state.voucher.vouchers.count;
     },
+    user_count() {
+      return this.$store.state.user.users.count;
+    },
     stats() {
       return [
-        { key: "Total User", value: "1000", difference: "+500" },
+        { key: "Total User", value: this.user_count, difference: "+500" },
         { key: "Voucher Avaible", value: this.vou_count, difference: "+500" },
       ];
+    },
+    statsReed() {
+      return this.$store.state.voucher.statsReed.data.april;
     },
   },
   mounted() {
     this.fetchVoucher("getall");
+    this.fetchUser("getall");
+    this.fetchStatsReed();
+    console.log(console.log("dashstat", this.statsReed));
+    // this.graphReed();
   },
 };
 </script>

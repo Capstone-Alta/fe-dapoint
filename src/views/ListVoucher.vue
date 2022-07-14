@@ -148,7 +148,7 @@
                   @submit="
                     updateVoucher(
                       voucher.ID,
-                      voucher.nama,
+                      voucher.name,
                       temp_amount,
                       voucher.harga_point
                     )
@@ -256,10 +256,11 @@ export default {
         query,
       });
     },
-    updateVoucher(id, nama, stock, harga_point) {
+    updateVoucher(id, vou_name, stock, harga_point) {
+      console.log("update", vou_name);
       this.$store.dispatch("voucher/updateVoucher", {
         id,
-        nama,
+        vou_name,
         stock,
         harga_point,
       });
@@ -283,7 +284,7 @@ export default {
     },
   },
   mounted() {
-    this.fetchVoucher("getall");
+    this.fetchVoucher(`getbytype/${this.voucher_type}`);
   },
 };
 </script>
