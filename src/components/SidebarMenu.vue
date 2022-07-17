@@ -212,6 +212,6 @@ export default {
 }
 
 .drawer-bar {
-  background-image: linear-gradient(180deg, white 28%, #008fbf 28%);
+  background-image: linear-gradient(180deg, white 25%, #008fbf 25%);
 }
 </style>
