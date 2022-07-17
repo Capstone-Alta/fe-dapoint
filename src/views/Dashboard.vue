@@ -166,7 +166,7 @@ export default {
     autoLineWidth: false,
   }),
   methods: {
-    fetchVoucher(query) {
+    async fetchVoucher(query) {
       this.$store.dispatch("voucher/fetchVoucher", {
         query,
       });
@@ -176,7 +176,7 @@ export default {
         query,
       });
     },
-    fetchStatsReed(query) {
+    async fetchStatsReed(query) {
       this.$store.dispatch("voucher/fetchStatsReed", {
         query,
       });
@@ -213,14 +213,14 @@ export default {
       ];
     },
     statsReed() {
-      return this.$store.state.voucher.statsReed.data.april;
+      return this.$store.state.voucher.statsReed;
     },
   },
   mounted() {
     this.fetchVoucher("getall");
     this.fetchUser("getall");
     this.fetchStatsReed();
-    console.log(console.log("dashstat", this.statsReed));
+    console.log("dashstat", this.statsReed);
     // this.graphReed();
   },
 };

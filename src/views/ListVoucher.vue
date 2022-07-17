@@ -132,7 +132,11 @@
             <div class="text-poin" style="color: #ff3d00">
               Poin : {{ voucher.harga_point }}
             </div>
-            <v-dialog transition="dialog-top-transition" max-width="425">
+            <v-dialog
+              transition="dialog-top-transition"
+              max-width="425"
+              v-model="dialog"
+            >
               <template v-slot:activator="{ on, attrs }">
                 <v-btn
                   color="primary"
@@ -145,12 +149,13 @@
               </template>
               <template v-slot:default="">
                 <v-form
-                  @submit="
+                  @submit.prevent="
                     updateVoucher(
                       voucher.ID,
                       voucher.name,
                       temp_amount,
-                      voucher.harga_point
+                      voucher.harga_point,
+                      voucher.nominal
                     )
                   "
                 >
@@ -205,6 +210,7 @@
                         large
                         class="mt-6"
                         type="submit"
+                        @click="dialog = false"
                         >Submit</v-btn
                       >
                     </v-card-text>
@@ -246,6 +252,7 @@ export default {
     text: `Hello, I'm a snackbar`,
     amount_added: 0,
     amount: 0,
+    dialog: false,
   }),
   methods: {
     openSnackbar() {
@@ -256,14 +263,18 @@ export default {
         query,
       });
     },
-    updateVoucher(id, vou_name, stock, harga_point) {
+    async updateVoucher(id, vou_name, stock, harga_point, nominal) {
       console.log("update", vou_name);
-      this.$store.dispatch("voucher/updateVoucher", {
+      const edit_status = await this.$store.dispatch("voucher/updateVoucher", {
         id,
         vou_name,
         stock,
         harga_point,
+        nominal,
       });
+      console.log("lia", edit_status);
+      this.fetchVoucher(`getbytype/${this.voucher_type}`);
+      this.amount_added = 0;
     },
     setAmount(v_stock) {
       this.amount = v_stock;

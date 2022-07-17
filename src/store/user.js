@@ -11,7 +11,7 @@ export default {
   },
   actions: {
     fetchUser(store, { query }) {
-      const url = `http://159.223.81.185:5011/admin/user/${query}`;
+      const url = `https://dapoint-api.herokuapp.com/admin/user/${query}`;
       axios.get(url).then((response) => {
         console.log("users : ", response.data);
         store.commit("setUsers", response.data);
