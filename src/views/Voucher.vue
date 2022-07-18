@@ -19,7 +19,107 @@
         elevation="0"
       >
         <div style="width: 49.5%">
-          <v-btn block color="primary" elevation="0">Entry New Voucher</v-btn>
+          <v-dialog v-model="dialog" width="60%">
+            <template v-slot:activator="{ on, attrs }">
+              <v-btn
+                block
+                color="primary"
+                elevation="0"
+                v-bind="attrs"
+                v-on="on"
+                >Entry New Voucher</v-btn
+              >
+            </template>
+            <v-form
+              @submit.prevent="
+                addVoucher(nama, nominal, harga_poin, stok, jenis)
+              "
+            >
+              <v-card
+                class="d-flex flex-column justify-center align-center"
+                height="400"
+              >
+                <v-card-text class="mx-2 d-flex flex-wrap">
+                  <div class="pa-2" style="width: 50%">
+                    <div class="text-detail">Nama Voucher</div>
+                    <v-alert outlined color="first" class="pa-0 ma-0">
+                      <v-text-field
+                        class="text-detail-value"
+                        v-model="nama"
+                        solo
+                        hide-details
+                      >
+                      </v-text-field>
+                    </v-alert>
+                  </div>
+                  <div class="pa-2" style="width: 50%">
+                    <div class="text-detail">Nominal</div>
+                    <v-alert outlined color="first" class="pa-0 ma-0">
+                      <v-text-field
+                        class="text-detail-value"
+                        v-model.number="nominal"
+                        solo
+                        hide-details
+                        type="number"
+                      >
+                      </v-text-field>
+                    </v-alert>
+                  </div>
+                  <div class="pa-2" style="width: 50%">
+                    <div class="text-detail">Harga Point</div>
+                    <v-alert outlined color="first" class="pa-0 ma-0">
+                      <v-text-field
+                        class="text-detail-value"
+                        v-model.number="harga_poin"
+                        solo
+                        hide-details
+                        type="number"
+                      >
+                      </v-text-field>
+                    </v-alert>
+                  </div>
+                  <div class="pa-2" style="width: 50%">
+                    <div class="text-detail">Stok</div>
+                    <v-alert outlined color="first" class="pa-0 ma-0">
+                      <v-text-field
+                        class="text-detail-value"
+                        v-model.number="stok"
+                        solo
+                        hide-details
+                        type="number"
+                      >
+                      </v-text-field>
+                    </v-alert>
+                  </div>
+                  <div class="pa-2" style="width: 50%">
+                    <div class="text-detail">Jenis</div>
+                    <v-alert outlined color="first" class="pa-0 ma-0">
+                      <v-text-field
+                        class="text-detail-value"
+                        v-model="jenis"
+                        solo
+                        hide-details
+                      >
+                      </v-text-field>
+                    </v-alert>
+                  </div>
+                </v-card-text>
+                <v-card-actions style="width: 70%">
+                  <v-btn
+                    color="#005389"
+                    class="text-button"
+                    style="color: white"
+                    @click="dialog = false"
+                    type="submit"
+                    large
+                    block
+                  >
+                    Simpan
+                  </v-btn>
+                </v-card-actions>
+              </v-card>
+            </v-form>
+          </v-dialog>
         </div>
         <div style="width: 49.5%">
           <v-text-field
@@ -81,9 +181,38 @@ export default {
       { title: "E-Money", link: "/emoney", icon: "emoney" },
       { title: "Cash Out", link: "/cashout", icon: "cashout" },
     ],
+    dialog: false,
+    nama: "",
+    nominal: 0,
+    harga_poin: 0,
+    stok: 0,
+    jenis: "",
   }),
+  methods: {
+    async addVoucher(vou_name, nominal, harga_poin, stock, jenis) {
+      // console.log("update", vou_name);
+      console.log("vou_name : ", vou_name);
+      console.log("nominal : ", nominal);
+      console.log("harga_point : ", harga_poin);
+      console.log("stock : ", stock);
+      console.log("jenis : ", jenis);
+      const add_status = await this.$store.dispatch("voucher/addVoucher", {
+        vou_name,
+        nominal,
+        harga_poin,
+        stock,
+        jenis,
+      });
+      console.log("add Statussss", add_status);
+      this.nama = "";
+      this.nominal = 0;
+      this.harga_poin = 0;
+      this.stok = 0;
+      this.jenis = "";
+    },
+  },
   mounted() {
-    this.$store.dispatch("fetchVouchers");
+    // this.$store.dispatch("fetchVouchers");
   },
 };
 </script>
@@ -96,5 +225,26 @@ export default {
   font-size: 30px;
   line-height: 48px;
   color: #ffffff;
+}
+
+.text-detail {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 150%;
+  /* identical to box height, or 45px */
+  color: #005389;
+
+  letter-spacing: -0.011em;
+}
+
+.text-button {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 25px;
+  line-height: 30px;
+  color: white;
 }
 </style>

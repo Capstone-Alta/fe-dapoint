@@ -113,7 +113,7 @@
                       <div class="text-detail">Voucher Amount</div>
                       <v-alert outlined color="first" class="pa-0">
                         <v-text-field
-                          :value="voucher.harga_point"
+                          :value="voucher.stock"
                           class="text-detail-value"
                           solo
                           readonly

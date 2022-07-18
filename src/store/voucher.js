@@ -57,6 +57,30 @@ export default {
     //     }
     //   );
     // },
+    async addVoucher(store, { vou_name, nominal, harga_poin, stock, jenis }) {
+      console.log("vou_name : ", vou_name);
+      console.log("nominal : ", nominal);
+      console.log("harga_poin : ", harga_poin);
+      console.log("stock : ", stock);
+      console.log("jenis : ", jenis);
+      const url = `https://dapoint-api.herokuapp.com/admin/voucher/create`;
+      const response = await axios.post(
+        url,
+        {
+          name: vou_name,
+          stock,
+          harga_point: harga_poin,
+          nominal,
+          tipe_voucher: jenis,
+        },
+        {
+          // Config
+        }
+      );
+      console.log("Status Adding : ", response.status);
+      // store.commit("setStatusUpdate", response);
+      return response.status;
+    },
     async updateVoucher(store, { id, vou_name, stock, harga_point, nominal }) {
       console.log("update store", vou_name);
       const url = `https://dapoint-api.herokuapp.com/admin/voucher/${id}`;
